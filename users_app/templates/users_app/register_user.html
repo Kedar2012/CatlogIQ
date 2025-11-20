@@ -1,0 +1,12 @@
+{% extends 'index.html' %}
+
+{% block title %}Product List{% endblock %}
+
+
+{% block content %}
+    
+    {% csrf_token %}
+    {{ form.as_p }}
+
+{% endblock content %}
+    
