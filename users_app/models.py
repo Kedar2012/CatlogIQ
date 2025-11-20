@@ -26,3 +26,7 @@ class UserProfile(models.Model):
 
     def __str__(self):
         return self.User_Name
+
+    def set_password(self, raw_password):
+        self.Password = raw_password
+        
