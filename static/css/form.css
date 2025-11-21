@@ -77,12 +77,12 @@
     box-shadow: 0px 0px 0px 2px #AC8ECE;
 }
 
-.reg_btn{
+.reg_btn_customer, .reg_btn_vendor{
     padding: 25px;
     margin: 15px 0;
 }
 
-.reg_btn input{
+.reg_btn_customer input{
     height: 45px;
     width: 100%;
     border: none;
@@ -96,9 +96,28 @@
     text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.2);
 }
 
-.reg_btn input:hover{
+.reg_btn_customer input:hover{
     background: linear-gradient(to right, #D64141, #F37A65);
 }
+
+.reg_btn_vendor input{
+    height: 45px;
+    width: 100%;
+    border: none;
+    font-size: 18px;
+    font-weight: 500;
+    cursor: pointer;
+    background: linear-gradient(to right, #65C3F3, #416DD6);
+    border-radius: 5px;
+    color: #ffffff;
+    letter-spacing: 1px;
+    text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.2);
+}
+
+.reg_btn_vendor input:hover{
+    background: linear-gradient(to right, #416DD6, #65C3F3);
+}
+
 
 @media screen and (max-width: 584px){
 

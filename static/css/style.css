@@ -46,10 +46,10 @@ nav {
   display: flex;
   gap: 10px;
   align-items: center;
+  padding: 5px 15px;
 }
 
 .auth-link {
-  padding: 5px 15px;
   border-radius: 10px;
   background-color: transparent;
   color: #153d3d;

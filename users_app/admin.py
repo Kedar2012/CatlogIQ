@@ -4,8 +4,8 @@ from .models import User,UserProfile
 
 @admin.register(User)
 class UserAdmin(UserAdmin):
-    list_display = ('User_Name', 'Email', 'First_Name', 'Last_Name', 'Role', 'is_admin', 'is_staff', 'is_active')
-    search_fields = ('User_Name', 'Email', 'First_Name', 'Last_Name', 'Role')
+    list_display = ('username', 'Email', 'First_Name', 'Last_Name', 'Role', 'is_admin', 'is_staff', 'is_active')
+    search_fields = ('username', 'Email', 'First_Name', 'Last_Name', 'Role')
     readonly_fields = ('date_joined', 'last_login', 'modified_date')
     ordering = ('date_joined',)
 

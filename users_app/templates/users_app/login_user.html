@@ -1,0 +1,60 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<div class="form-wrapper">
+    <div class="container">
+        <div class="title">
+            <p>Customer Login</p>
+        </div>
+        <form method="post">
+            <input type="hidden" name="login_type" value="customer">
+            <div class="user_details">
+                {% csrf_token %}
+                {% for field in form %}
+                    <div class="input_box">
+                        {{ field.label_tag }}
+                        {{ field }}
+                    </div>
+                    {% if field.errors %}
+                        <div class="text-danger small">
+                            {{ field.errors|striptags }}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <div class="reg_btn_customer">
+                <input type="submit" value="Login">
+            </div>
+        </form>
+    </div>
+
+
+    <div class="container">
+        <div class="title">
+            <p>Vendor Login</p>
+        </div>
+        <form method="post">
+            <input type="hidden" name="login_type" value="vendor">
+            <div class="user_details">
+                {% csrf_token %}
+                {% for field in form %}
+                    <div class="input_box">
+                        {{ field.label_tag }}
+                        {{ field }}
+                    </div>
+                    {% if field.errors %}
+                        <div class="text-danger small">
+                            {{ field.errors|striptags }}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <div class="reg_btn_vendor">
+                <input type="submit" value="Login">
+            </div>
+        </form>
+    </div>
+
+</div>
+
+{% endblock content %}

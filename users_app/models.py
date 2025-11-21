@@ -3,15 +3,15 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 
 # Create your models here.
 class userManager(BaseUserManager):
-    def create_user(self, First_Name, Last_Name, User_Name, Email, Role, password=None):
+    def create_user(self, First_Name, Last_Name, username, Email, Role, password=None):
         if not Email:
             raise ValueError("Email is required")
-        if not User_Name:
+        if not username:
             raise ValueError("Username is required")
         user = self.model(
             First_Name=First_Name,
             Last_Name=Last_Name,
-            User_Name=User_Name,
+            username=username,
             Email=self.normalize_email(Email),
             Role=Role,
         )
@@ -19,11 +19,11 @@ class userManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, First_Name, Last_Name, User_Name, Email, password=None, Role=None):
+    def create_superuser(self, First_Name, Last_Name, username, Email, password=None, Role=None):
         user = self.create_user(
             First_Name=First_Name,
             Last_Name=Last_Name,
-            User_Name=User_Name,
+            username=username,
             Email=self.normalize_email(Email),
             Role=UserType.ADMIN,
             password=password,
@@ -43,7 +43,7 @@ class User(AbstractBaseUser):
 
     First_Name = models.CharField(max_length=200)
     Last_Name = models.CharField(max_length=200)
-    User_Name = models.CharField(max_length=100, unique=True)
+    username = models.CharField(max_length=100, unique=True)
     Email = models.EmailField(unique=True)
     Phone_Number = models.CharField(max_length=15)
     Role = models.CharField(max_length=10,choices=UserType.choices)
@@ -57,13 +57,13 @@ class User(AbstractBaseUser):
     is_active = models.BooleanField(default=True)
     is_superadmin = models.BooleanField(default=False)
 
-    USERNAME_FIELD = 'User_Name'
+    USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = ['First_Name', 'Last_Name', 'Email', 'Role']
 
     objects = userManager()
 
     def __str__(self):
-        return self.User_Name
+        return self.username
     
     def get_role(self):
         return self.Role
@@ -89,5 +89,5 @@ class UserProfile(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.user.User_Name
+        return self.user.username
     

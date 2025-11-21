@@ -2,13 +2,26 @@
   <p id="logo">CatlogIQ</p>
   <ul class="links navbarul">
     <li class="navbarli"><a href="{% url 'home' %}">Home</a></li>
+    {% if user.is_authenticated %}
+      {% if user.Role == 'Customer' %}
+        <li class="navbarli"><a href="#">Products</a></li>
+      {% elif user.Role == 'Vendor' %}
+        <li class="navbarli"><a href="#">My Products</a></li>
+      {% endif %}
+    {% endif %}
     <li class="navbarli">About</li>
-    <li class="navbarli">Blog</li>
     <li class="navbarli">Contact</li>
   </ul>
+
+
   <div class="auth-buttons">
-    <a href="{% url 'register_user' %}" class="auth-link">Sign Up</a>
-    <a href="#" class="auth-link">Log In</a>
+    {% if user.is_authenticated %}
+      <a href="{% url 'customer_dashboard' %}" class="auth-link">Welcome, {{ user.First_Name }}!</a>
+      <a href="{% url 'logout_user' %}" class="auth-link">Log Out</a>
+    {% else %}
+      <a href="{% url 'register_user' %}" class="auth-link">Sign Up</a>
+      <a href="{% url 'login_user' %}" class="auth-link">Log In</a>
+    {% endif %}
   </div>
 
 </nav>
