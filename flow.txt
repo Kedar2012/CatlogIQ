@@ -1,0 +1,46 @@
+smart_catalog/
+├── CatlogIQ/
+│   ├── manage.py
+│   ├── requirements_django.txt
+│   ├── .env
+│   ├── CatlogIQ/
+│   │   ├── __init__.py
+│   │   ├── settings.py
+│   │   ├── urls.py
+│   │   ├── wsgi.py
+│   │   └── asgi.py
+│
+│   ├── catalog_app/
+│   │   ├── __init__.py
+│   │   ├── models.py
+│   │   ├── views.py
+│   │   ├── urls.py
+│   │   ├── admin.py
+│   │   ├── templates/
+│   │   │   └── catalog_app/
+│   │   │       ├── product_list.html
+│   │   │       ├── product_detail.html
+│   │   │       └── dashboard.html
+│   │   ├── static/
+│   │   │   └── catalog_app/
+│   │   │       ├── css/
+│   │   │       │   └── style.css
+│   │   │       ├── js/
+│   │   │       │   └── scripts.js
+│   │   │       └── images/
+│
+│   ├── users_app/
+│   │   ├── __init__.py
+│   │   ├── models.py
+│   │   ├── views.py
+│   │   ├── urls.py
+│   │   ├── admin.py
+│   │   ├── templates/
+│   │   │   └── users_app/
+│   │   │       └── user_dashboard.html
+│   │   ├── static/
+│   │   │   └── users_app/
+│   │   │       └── css/
+│
+├── README.md
+└── .gitignore
