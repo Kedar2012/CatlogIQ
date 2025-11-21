@@ -42,20 +42,27 @@ nav {
   color: #153d3d;
 }
 
-nav .signup-btn {
-  padding: 5px 20px;
-  border-radius: 15px;
-  background-color: #153d3d;
-  color: white;
+.auth-buttons {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.auth-link {
+  padding: 5px 15px;
+  border-radius: 10px;
+  background-color: transparent;
+  color: #153d3d;
   font-family: "Poppins", sans-serif;
   font-weight: 500;
   text-decoration: none;
   transition: background-color 0.3s ease;
-  align-self: flex-start;
+  border: 1px solid transparent;
 }
 
-nav .signup-btn:hover {
-  background-color: #286318;
+.auth-link:hover {
+  background-color: #e2eddf;
+  text-decoration: none;
 }
 
 .main {
