@@ -42,3 +42,15 @@ Thumbs.db
 *.pid
 *.tar
 *.sock
+
+
+#image files
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.svg
+*.ico
+*.bmp
+*.tiff
+*.webp

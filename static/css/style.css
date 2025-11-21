@@ -236,3 +236,26 @@ nav {
 	font-weight: bold;
 	margin-bottom: 20px;
 }
+
+.cover-photo {
+    width: 100%;
+    height: 250px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.cover-banner {
+    width: 100%;
+    height: 250px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+    margin-bottom: 30px;
+}
+
+.profile-half img {
+    display: block;
+    margin: 0 auto;
+}

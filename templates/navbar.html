@@ -4,9 +4,9 @@
     <li class="navbarli"><a href="{% url 'home' %}">Home</a></li>
     {% if user.is_authenticated %}
       {% if user.Role == 'Customer' %}
-        <li class="navbarli"><a href="#">Products</a></li>
+        <li class="navbarli"><a href="{% url 'customer_dashboard' %}">Products</a></li>
       {% elif user.Role == 'Vendor' %}
-        <li class="navbarli"><a href="#">My Products</a></li>
+        <li class="navbarli"><a href="{% url 'vendor_dashboard' %}">My Products</a></li>
       {% endif %}
     {% endif %}
     <li class="navbarli">About</li>
@@ -16,7 +16,12 @@
 
   <div class="auth-buttons">
     {% if user.is_authenticated %}
-      <a href="{% url 'customer_dashboard' %}" class="auth-link">Welcome, {{ user.First_Name }}!</a>
+      {% if user.Role == 'Customer' %}
+        <a href="{% url 'view_profile' %}" class="auth-link">Welcome, {{ user.First_Name }}!</a>
+      {% elif user.Role == 'Vendor' %}
+        <a href="{% url 'view_profile' %}" class="auth-link">Welcome, {{ user.First_Name }}!</a>
+      {% endif %}
+      
       <a href="{% url 'logout_user' %}" class="auth-link">Log Out</a>
     {% else %}
       <a href="{% url 'register_user' %}" class="auth-link">Sign Up</a>

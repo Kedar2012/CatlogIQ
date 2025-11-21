@@ -1,0 +1,58 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<div class="form-wrapper">
+    <div class="container">
+        <div class="title">
+            <p>My Profile</p>
+        </div>
+
+        <div class="profile-card">
+            <!-- Profile Header -->
+            <div class="profile-header">
+                {% if profile.cover_photo %}
+                    <div class="cover-photo" style="background-image:url('{{ profile.cover_photo.url }}');"></div>
+                {% else %}
+                    <div class="cover-photo default-cover"></div>
+                {% endif %}
+                <div class="profile-picture">
+                    {% if profile.profile_picture %}
+                        <img src="{{ profile.profile_picture.url }}" alt="Profile Picture">
+                    {% else %}
+                        <img src="https://via.placeholder.com/120" alt="Profile Picture">
+                    {% endif %}
+                </div>
+                <h2>{{ user.First_Name }} {{ user.Last_Name }}</h2>
+                <p class="role">{{ user.Role }}</p>
+            </div>
+
+            <!-- Profile Body -->
+            <div class="profile-body">
+                <div class="info-section">
+                    <h3>Account Information</h3>
+                    <p><strong>Email:</strong> {{ user.Email }}</p>
+                    <p><strong>Phone Number:</strong> {{ user.Phone_Number }}</p>
+                </div>
+
+                <div class="info-section">
+                    <h3>Profile Details</h3>
+                    <p><strong>Address:</strong> {{ profile.address }}</p>
+                    <p><strong>City:</strong> {{ profile.city }}</p>
+                    <p><strong>State:</strong> {{ profile.state }}</p>
+                    <p><strong>Country:</strong> {{ profile.country }}</p>
+                    <p><strong>Postal Code:</strong> {{ profile.postal_code }}</p>
+                    <p><strong>Latitude:</strong> {{ profile.latitude }}</p>
+                    <p><strong>Longitude:</strong> {{ profile.longitude }}</p>
+                </div>
+            </div>
+
+            <!-- Action -->
+            <div class="reg_btn_register">
+                <a href="{% url 'edit_profile' %}">
+                    <input type="button" value="Edit Profile">
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

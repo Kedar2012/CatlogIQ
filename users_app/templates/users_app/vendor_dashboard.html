@@ -1,0 +1,21 @@
+{% extends 'index.html' %}
+
+{% block title %}Product List{% endblock %}
+
+
+{% block content %}
+
+<div class="main">
+  <div class="txt">
+    <h2>Welcome, {{ user.First_Name }} {{ user.Last_Name }}!</h2>
+    <p>Your role is: <strong>{{ role }}</strong></p>
+  </div>
+  <div class="pictures">
+    <div class="img" id="img1"></div>
+    <div class="img" id="img2"></div>
+    <div class="img" id="img3"></div>
+  </div>
+
+</div>  
+
+{% endblock %}

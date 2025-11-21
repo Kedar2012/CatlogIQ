@@ -1,0 +1,69 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<div class="form-wrapper">
+    <div class="container">
+        <div class="title">
+            <p>Edit Profile</p>
+        </div>
+
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <div class="edit-profile-grid">
+                <!-- Left: Form Fields -->
+                <div class="edit-form-section">
+                    <h3>Account Info</h3>
+                    <div class="user_details">
+                        {% for field in user_form %}
+                            <div class="input_box">
+                                {{ field.label_tag }}
+                                {{ field }}
+                            </div>
+                            {% if field.errors %}
+                                <div class="text-danger small">
+                                    {{ field.errors|striptags }}
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+
+                    <h3>Profile Details</h3>
+                    <div class="user_details">
+                        {% for field in profile_form %}
+                            {% if field.name not in "profile_picture cover_photo" %}
+                                <div class="input_box">
+                                    {{ field.label_tag }}
+                                    {{ field }}
+                                </div>
+                                {% if field.errors %}
+                                    <div class="text-danger small">
+                                        {{ field.errors|striptags }}
+                                    </div>
+                                {% endif %}
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <!-- Right: Image Uploads -->
+                <div class="edit-image-section">
+                    <h3>Images</h3>
+                    <div class="input_box">
+                        {{ profile_form.profile_picture.label_tag }}
+                        {{ profile_form.profile_picture }}
+                    </div>
+                    <div class="input_box">
+                        {{ profile_form.cover_photo.label_tag }}
+                        {{ profile_form.cover_photo }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="reg_btn_register">
+                <input type="submit" value="Save Changes">
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock content %}
