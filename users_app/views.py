@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .forms import RegisterForm
 
 # Create your views here.
@@ -8,7 +8,7 @@ def register_user(request):
         form = RegisterForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return render(request, 'users_app/register_user.html')
+            return redirect('home')
     else:
         form = RegisterForm()
     return render(request, 'users_app/register_user.html', {'form': form})
