@@ -47,12 +47,19 @@
             </div>
 
             <!-- Action -->
-            <div class="reg_btn_register">
-                <a href="{% url 'edit_profile' %}">
-                    <input type="button" value="Edit Profile">
+            <div class="action-buttons">
+                <a href="{% url 'edit_profile' %}" class="icon-action">
+                    <i class="fas fa-pencil-alt"></i> Edit Profile
                 </a>
+
+                {% if user.Role == 'Vendor' %}
+                    <a href="{% url 'view_my_products' %}" class="icon-action">
+                        <i class="fas fa-box-open"></i> My Products
+                    </a>
+                {% endif %}
             </div>
-        </div>
+
+
     </div>
 </div>
 {% endblock content %}

@@ -1,0 +1,62 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<div class="form-wrapper">
+    <div class="container">
+        <div class="title">
+            <p>My Products</p>
+        </div>
+
+        <div class="profile-card">
+            <div class="profile-header">
+                <h2>{{ user.First_Name }} {{ user.Last_Name }}</h2>
+                <p class="role">{{ user.Role }}</p>
+            </div>
+
+            <div class="profile-body">
+                <div class="info-section">
+                    <h3>Account Information</h3>
+                    <p><strong>Email:</strong> {{ user.Email }}</p>
+                    <p><strong>Phone Number:</strong> {{ user.Phone_Number }}</p>
+                </div>
+
+                <div class="info-section">
+                    <h3>Products Details</h3>
+                    {% for pd in my_products %}
+                        <div class="product-card">
+                            <hr>
+                            <div class="profile-picture">
+                                {% if pd.image %}
+                                    <img src="{{ pd.image.url }}" alt="Product Picture">
+                                {% else %}
+                                    <img src="https://via.placeholder.com/120" alt="Product Picture">
+                                {% endif %}
+                            </div>
+                            <p><strong>Name:</strong> {{ pd.name }}</p>
+                            <p><strong>Category:</strong> {{ pd.category }}</p>
+                            <p><strong>Description:</strong> {{ pd.description }}</p>
+                            <p><strong>Price:</strong> {{ pd.price }}</p>
+                            <p><strong>SKU:</strong> {{ pd.sku_code }}</p>
+                            <p><strong>Stock:</strong> {{ pd.stock }}</p>
+
+                            <!-- Action Icons -->
+                            <div class="product-actions">
+                                <a href="{% url 'edit_product' pd.pk %}" class="icon-btn edit-btn" title="Edit">
+                                    <i class="fas fa-pencil-alt"></i>
+                                </a>
+                                <a href="{% url 'delete_product' pd.pk %}" class="icon-btn delete-btn" title="Delete"
+                                onclick="return confirm('Are you sure you want to delete this product?');">
+                                    <i class="fas fa-trash"></i>
+                                </a>
+                            </div>
+                        </div>
+                    {% empty %}
+                        <p>No products found.</p>
+                    {% endfor %}
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

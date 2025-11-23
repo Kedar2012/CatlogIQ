@@ -1,32 +1,48 @@
 <nav>
-  <p id="logo">CatlogIQ</p>
   <ul class="links navbarul">
-    <li class="navbarli"><a href="{% url 'home' %}">Home</a></li>
+    <li class="linkss navbarp">
+      <a href="{% url 'home' %}"><p id="logo">CatlogIQ</p></a>
+    </li>
+
     {% if user.is_authenticated %}
-      {% if user.Role == 'Customer' %}
-        <li class="navbarli"><a href="{% url 'customer_dashboard' %}">Products</a></li>
-      {% elif user.Role == 'Vendor' %}
-        <li class="navbarli"><a href="{% url 'vendor_dashboard' %}">My Products</a></li>
+      {% if user.Role == 'Vendor' %}
+        <li class="navbarli"><a href="{% url 'vendor_dashboard' %}">Dashboard</a></li>
+        <li class="navbarli"><a href="{% url 'view_my_products' %}">My Products</a></li>
+        <li class="navbarli"><a href="{% url 'create_product' %}">Add Product</a></li>
       {% endif %}
     {% endif %}
-    <li class="navbarli">About</li>
-    <li class="navbarli">Contact</li>
-  </ul>
 
+    <li class="navbarli dropdown">
+      <a href="#">Categories ▾</a>
+      <ul class="dropdown-menu">
+        {% for cat in categories %}
+          <li><a href="{% url 'products_by_category' cat.id %}">{{ cat.name }}</a></li>
+        {% empty %}
+          <li><em>No categories found</em></li>
+        {% endfor %}
+      </ul>
+    </li>
+
+    <li class="navbarli">
+      <form class="form-inline">
+        <input class="form-control mr-sm-3" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
+    </li>
+  </ul>
 
   <div class="auth-buttons">
     {% if user.is_authenticated %}
       {% if user.Role == 'Customer' %}
+        <a href="#" class="auth-link">🛒</a>
         <a href="{% url 'view_profile' %}" class="auth-link">Welcome, {{ user.First_Name }}!</a>
       {% elif user.Role == 'Vendor' %}
         <a href="{% url 'view_profile' %}" class="auth-link">Welcome, {{ user.First_Name }}!</a>
       {% endif %}
-      
       <a href="{% url 'logout_user' %}" class="auth-link">Log Out</a>
     {% else %}
       <a href="{% url 'register_user' %}" class="auth-link">Sign Up</a>
       <a href="{% url 'login_user' %}" class="auth-link">Log In</a>
     {% endif %}
   </div>
-
 </nav>

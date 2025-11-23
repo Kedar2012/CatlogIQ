@@ -1,0 +1,40 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<div class="container">
+    {% if selected_category %}
+        <h2>Products in "{{ selected_category.name }}"</h2>
+        <div class="products-grid">
+            {% for product in products %}
+                <div class="product-card">
+                    <!-- Product Image -->
+                    <div class="product-image">
+                        {% if product.image %}
+                            <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                        {% else %}
+                            <img src="https://via.placeholder.com/200x200?text=No+Image" alt="No image">
+                        {% endif %}
+                    </div>
+
+                    <!-- Product Details -->
+                    <div class="product-details">
+                        <h3>{{ product.name }}</h3>
+                        <p class="description">{{ product.description }}</p>
+                        <p class="price">₹{{ product.price }}</p>
+
+                        <!-- Add to Cart -->
+                        <form method="post" action="{% url 'add_to_cart' product.id %}">
+                            {% csrf_token %}
+                            <button type="submit" class="cart-btn">Add to Cart 🛒</button>
+                        </form>
+                    </div>
+                </div>
+            {% empty %}
+                <p>No products found in this category.</p>
+            {% endfor %}
+        </div>
+    {% else %}
+        <h2>Select a category to view products</h2>
+    {% endif %}
+</div>
+{% endblock %}

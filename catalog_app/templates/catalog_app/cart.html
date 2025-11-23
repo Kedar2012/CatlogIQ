@@ -1,0 +1,19 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<div class="container">
+    <h2>My Cart</h2>
+    {% if cart_items %}
+        <ul class="cart-list">
+            {% for item in cart_items %}
+                <li>
+                    <strong>{{ item.product.name }}</strong> - ₹{{ item.product.price }}  
+                    (Quantity: {{ item.quantity }})
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Your cart is empty.</p>
+    {% endif %}
+</div>
+{% endblock %}

@@ -67,7 +67,6 @@ def customer_dashboard(request):
 def vendor_dashboard(request):
     return render(request, 'users_app/vendor_dashboard.html', {'role': request.user.Role})
 
-
 @login_required
 def view_profile(request):
     user = request.user
@@ -77,7 +76,6 @@ def view_profile(request):
         'profile': user_profile,
     }
     return render(request, "users_app/view_profile.html", context)
-
 
 @login_required
 def edit_profile(request):
